@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pydantic
+alembic
+psycopg2-binary>=2.8.6
+SQLAlchemy
