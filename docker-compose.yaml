@@ -24,7 +24,7 @@ services:
     image: postgres:13-alpine
     container_name: backend-db    
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data
     env_file:
       - ./backend/.env
     ports:
