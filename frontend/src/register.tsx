@@ -1,18 +1,23 @@
-
 import Button from '@mui/material/Button';
-import { FormControl, FormLabel } from '@mui/material';
-import TextField from "@material-ui/core/TextField";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Controller } from "react-hook-form";
+import {
+    TextField,
+    Select,
+    MenuItem,
+    Grid,
+} from '@material-ui/core'
+
 
 type Inputs = {
     title: string;
     description: string;
     owner_id: string;
-  };
-  
+};
+
 
 const Register = () => {
+
     const {
         register,
         control,
@@ -35,38 +40,71 @@ const Register = () => {
 
     return (
         <>
+            新規に追加したい項目を入力してください。
             <form
                 method="POST"
                 onSubmit={handleSubmit(onSubmit)}
                 encType="multipart/form-data"
             >
-                <FormControl
+                {/* <FormControl
+                    sx={{ m: 1, minWidth: 120 }} size="small"
                     required
                     error={errors?.hasOwnProperty("title")}
                     component="fieldset"
-                    fullWidth
+                // fullWidth
                 >
-                    <FormLabel component="legend">テキスト質問</FormLabel>
+                    <FormLabel component="legend">項目名</FormLabel> */}
+                <Grid item xs={6}>
                     <Controller
                         name="title"
                         control={control}
                         rules={{ required: "入力してください" }}
                         render={({ field }) => <TextField {...field} variant="outlined" />}
                     />
-                </FormControl>
+                </Grid>
+                {/* </FormControl> */}
+
+                {/* <FormControl
+                    sx={{ m: 1, minWidth: 120 }} size="small"
+                    required
+                    error={errors?.hasOwnProperty("description")}
+                    component="fieldset"
+                >
+                    <FormLabel component="legend">説明</FormLabel> */}
+                <Grid item xs={6}>
+                    <Controller
+                        name="description"
+                        control={control}
+                        rules={{ required: "入力してください" }}
+                        render={({ field }) => <TextField {...field} variant="outlined" />}
+                    />
+                </Grid>
+                {/* </FormControl> */}
+                {/* 
+                <FormControl
+                    sx={{ m: 1, minWidth: 120 }} size="small"
+                    required
+                    error={errors?.hasOwnProperty("owner_id")}
+                    component="fieldset"
+                >
+                    <FormLabel component="legend">所有者ID</FormLabel> */}
+                <Grid item xs={6}><Controller
+                    name="owner_id"
+                    control={control}
+                    rules={{ required: "入力してください" }}
+                    render={({ field }) =>
+                        <Select {...field}>
+                            <MenuItem value={10}>10</MenuItem>
+                            <MenuItem value={20}>20</MenuItem>
+                            <MenuItem value={30}>30</MenuItem>
+                        </Select>
+                    }
+                />
+                </Grid>
+                {/* </FormControl> */}
                 <Button type="submit" variant="contained" color="primary">
                     送信
                 </Button>
-            </form>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input defaultValue="test" {...register('title')} />
-                <input {...register('description')} />
-                <input {...register('owner_id', { required: true })} />
-                {errors.description && (
-                    <span style={{ color: 'red' }}>This field is required</span>
-                )}
-                <Button type="submit">登録</Button>
             </form>
         </>
     );
