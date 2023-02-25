@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import { DataGrid, GridColDef, GridToolbar, jaJP } from '@mui/x-data-grid';
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteButton from './DeleteButton'
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     { field: 'title', headerName: '項目名', width: 150 },
     { field: 'description', headerName: '備考', width: 150 },
     { field: 'owner_id', headerName: '所有者', width: 150 },
-    { field: 'delete', headerName: '削除', renderCell: (params) => { return (<DeleteIcon />); } },
+    { field: 'delete', headerName: '削除', renderCell: (params) => <DeleteButton rowId={ params.id } />},
 ];
 
 const DataTable = () => {

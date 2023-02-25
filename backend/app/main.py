@@ -70,3 +70,8 @@ def create_item_for_user(
 def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
+
+@app.delete("/items/{item_id}")
+def delete_items(item_id: int, db: Session = Depends(get_db)):
+    ok = crud.delete_items(db, item_id=item_id)
+    return ok

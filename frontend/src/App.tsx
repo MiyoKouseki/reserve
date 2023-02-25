@@ -27,7 +27,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component={'div'}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -72,9 +72,9 @@ function App() {
   };
 
   return (
-    <Grid container>
-      <Grid sm={2} />
-      <Grid lg={8} sm={8} spacing={10}>
+    <Grid container spacing={10}>
+      <Grid item sm={2} />
+      <Grid item lg={8} sm={8}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="一覧" {...a11yProps(0)} />

@@ -15,15 +15,11 @@ type Inputs = {
     owner_id: string;
 };
 
-
 const Register = () => {
 
     const {
-        register,
         control,
         handleSubmit,
-        watch,
-        formState: { errors }
     } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = (data: any) => {
@@ -39,21 +35,13 @@ const Register = () => {
     };
 
     return (
-        <>
-            新規に追加したい項目を入力してください。
+        <div>
+            新規に追加したい項目を入力してください
             <form
                 method="POST"
                 onSubmit={handleSubmit(onSubmit)}
                 encType="multipart/form-data"
             >
-                {/* <FormControl
-                    sx={{ m: 1, minWidth: 120 }} size="small"
-                    required
-                    error={errors?.hasOwnProperty("title")}
-                    component="fieldset"
-                // fullWidth
-                >
-                    <FormLabel component="legend">項目名</FormLabel> */}
                 <Grid item xs={6}>
                     <Controller
                         name="title"
@@ -62,15 +50,6 @@ const Register = () => {
                         render={({ field }) => <TextField {...field} variant="outlined" />}
                     />
                 </Grid>
-                {/* </FormControl> */}
-
-                {/* <FormControl
-                    sx={{ m: 1, minWidth: 120 }} size="small"
-                    required
-                    error={errors?.hasOwnProperty("description")}
-                    component="fieldset"
-                >
-                    <FormLabel component="legend">説明</FormLabel> */}
                 <Grid item xs={6}>
                     <Controller
                         name="description"
@@ -79,15 +58,6 @@ const Register = () => {
                         render={({ field }) => <TextField {...field} variant="outlined" />}
                     />
                 </Grid>
-                {/* </FormControl> */}
-                {/* 
-                <FormControl
-                    sx={{ m: 1, minWidth: 120 }} size="small"
-                    required
-                    error={errors?.hasOwnProperty("owner_id")}
-                    component="fieldset"
-                >
-                    <FormLabel component="legend">所有者ID</FormLabel> */}
                 <Grid item xs={6}><Controller
                     name="owner_id"
                     control={control}
@@ -101,12 +71,13 @@ const Register = () => {
                     }
                 />
                 </Grid>
-                {/* </FormControl> */}
                 <Button type="submit" variant="contained" color="primary">
                     送信
                 </Button>
+
             </form>
-        </>
+        </div>
+
     );
 };
 
